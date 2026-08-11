@@ -17,7 +17,13 @@
     <meta name="theme-color" content="#1D3B42" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <!-- Not black-translucent. That draws the page under the status bar but
+         still sizes it as screen-minus-status-bar, leaving a band at the
+         bottom the page never owns and iOS fills with the manifest colour.
+         "default" starts the page below the status bar and lets it reach the
+         bottom of the screen. The status bar is tinted by the theme-color
+         meta, which each screen sets to its own surface. -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Ledger" />
 
     <link rel="manifest" href="manifest.webmanifest" />
