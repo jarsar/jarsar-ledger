@@ -97,6 +97,8 @@
      16px float on top of it strands the dock in the middle of the gap.
      Take whichever is larger: 34px on a notched phone, 16px on anything
      without one. */
+  /* App.jsx overwrites this on the root element, and only when the installed
+     app is handed less height than the screen. */
   --dock-bottom: max(var(--dock-inset), var(--safe-bottom));
 
   /* The band the dock and its veil occupy, and the room a scrolling screen

@@ -2,7 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- height=device-height matters on an installed iPhone app: without it iOS
+         hands the page screen-height minus the status bar while still drawing
+         it under the status bar, stranding a band at the bottom that the page
+         never owns and that iOS fills with the manifest background colour. -->
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1, viewport-fit=cover"
+    />
 
     <title>JarSar Ledger</title>
     <meta name="description" content="The expense book of JarSar Capital." />

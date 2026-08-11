@@ -46,7 +46,9 @@ function DeviceReport() {
     ['safe top / bottom', `${probe.top} / ${probe.bottom}`],
     ['dock bottom css', dock ? getComputedStyle(document.querySelector('.dock')).bottom : '—'],
     ['dock gap in page', dock ? `${Math.round(window.innerHeight - dock.bottom)}px` : '—'],
-    ['gap on screen', dock ? `${Math.round(window.screen.height - dock.bottom)}px` : '—'],
+    // Page coordinates plus the band the page never gets. Adding them is only
+    // meaningful because the page starts at the top of the screen.
+    ['gap on screen', dock ? `${Math.round(window.innerHeight - dock.bottom + unclaimed)}px` : '—'],
     ['standalone', standalone ? 'yes' : 'no (Safari)'],
     ['dpr', String(window.devicePixelRatio)],
   ];
