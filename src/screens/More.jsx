@@ -9,10 +9,12 @@ import { COPY, DOOR_LABELS } from '../lib/copy';
 import './More.css';
 
 /**
- * What the device actually reports about its own geometry. Reached only at
- * #/more?debug=1 — the safe-area insets and the standalone flag cannot be
- * reproduced in a desktop browser, so when the dock sits wrong on a real
- * phone this is the only way to see why.
+ * What the device actually reports about its own geometry. Safe-area insets
+ * and the standalone flag cannot be reproduced in a desktop browser, so when
+ * the dock sits wrong on a real phone this is the only way to see why.
+ *
+ * Revealed by tapping the build line three times — an installed app launches
+ * at its start URL and drops any hash, so a ?debug=1 link cannot reach it.
  */
 function DeviceReport() {
   const probe = useMemo(() => {
@@ -32,12 +34,19 @@ function DeviceReport() {
   const standalone =
     window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 
+  // If the page is shorter than the screen while standalone, iOS is painting
+  // bands above and below it in the manifest's background colour — which is
+  // fog, so they look like part of the app rather than like letterboxing.
+  const unclaimed = window.screen.height - window.innerHeight;
+
   const lines = [
     ['screen', `${window.screen.width}×${window.screen.height}`],
     ['viewport', `${window.innerWidth}×${window.innerHeight}`],
-    ['visual viewport', window.visualViewport ? `${Math.round(window.visualViewport.width)}×${Math.round(window.visualViewport.height)}` : '—'],
+    ['unclaimed height', `${unclaimed}px`],
     ['safe top / bottom', `${probe.top} / ${probe.bottom}`],
-    ['dock gap below', dock ? `${Math.round(window.innerHeight - dock.bottom)}px` : '—'],
+    ['dock bottom css', dock ? getComputedStyle(document.querySelector('.dock')).bottom : '—'],
+    ['dock gap in page', dock ? `${Math.round(window.innerHeight - dock.bottom)}px` : '—'],
+    ['gap on screen', dock ? `${Math.round(window.screen.height - dock.bottom)}px` : '—'],
     ['standalone', standalone ? 'yes' : 'no (Safari)'],
     ['dpr', String(window.devicePixelRatio)],
   ];
@@ -62,6 +71,8 @@ export default function More({ debug = false }) {
   const settings = useSettings();
   const [armed, setArmed] = useState(false);
   const [resyncing, setResyncing] = useState(false);
+  const [taps, setTaps] = useState(0);
+  const showDevice = debug || taps >= 3;
 
   const doors = useMemo(() => doorsStatus(allRows), [allRows]);
   const known = allRows.length;
@@ -218,9 +229,11 @@ export default function More({ debug = false }) {
           </button>
         )}
 
-        {debug && <DeviceReport />}
+        {showDevice && <DeviceReport />}
 
-        <div className="mono more__footer">{COPY.build}</div>
+        <button className="mono more__footer" onClick={() => setTaps((t) => t + 1)}>
+          {COPY.build}
+        </button>
       </ScreenBody>
     </Screen>
   );
