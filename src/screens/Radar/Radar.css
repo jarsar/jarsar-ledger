@@ -36,7 +36,7 @@
 }
 
 .radar__body {
-  padding: 14px var(--gutter) 0;
+  padding: 14px var(--gutter) var(--dock-clearance);
   display: flex;
   flex-direction: column;
   gap: 11px;

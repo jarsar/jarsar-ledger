@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: calc(var(--dock-h) + var(--dock-bottom) + var(--dock-inset) + 8px);
+  height: var(--dock-band);
   background: linear-gradient(180deg, rgba(237, 241, 239, 0) 0%, var(--fog) 55%);
   pointer-events: none;
   z-index: 39;

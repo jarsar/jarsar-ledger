@@ -98,5 +98,11 @@
      Take whichever is larger: 34px on a notched phone, 16px on anything
      without one. */
   --dock-bottom: max(var(--dock-inset), var(--safe-bottom));
-  --dock-clearance: calc(var(--dock-h) + var(--dock-bottom) + 20px);
+
+  /* The band the dock and its veil occupy, and the room a scrolling screen
+     must leave beneath its last row. The clearance has to exceed the veil,
+     or the final item comes to rest inside the fade and cannot be read or
+     tapped — so both are derived from one figure. */
+  --dock-band: calc(var(--dock-h) + var(--dock-bottom) + var(--dock-inset));
+  --dock-clearance: calc(var(--dock-band) + 28px);
 }

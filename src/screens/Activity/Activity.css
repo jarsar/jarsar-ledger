@@ -58,8 +58,11 @@
   margin-top: 12px;
 }
 
+/* The bottom padding is the dock clearance — stated here because a padding
+   shorthand would otherwise reset it to zero and drop the last row behind
+   the dock. */
 .activity__body {
-  padding: 14px var(--gutter) 0;
+  padding: 14px var(--gutter) var(--dock-clearance);
 }
 
 .activity__day {

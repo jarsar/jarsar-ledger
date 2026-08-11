@@ -98,7 +98,11 @@ export default function More({ debug = false }) {
   return (
     <Screen variant="fog" scroll={false}>
       <div className="more__head">
-        <span className="more__title">{COPY.more.title}</span>
+        {/* Three taps on the title opens the device report. The title is the
+            easiest thing on the screen to hit, and nothing overlaps it. */}
+        <button className="more__title" onClick={() => setTaps((t) => t + 1)}>
+          {COPY.more.title}
+        </button>
         {settings.demo && <span className="mono more__demochip">DEMO BOOK</span>}
       </div>
 
@@ -231,9 +235,7 @@ export default function More({ debug = false }) {
 
         {showDevice && <DeviceReport />}
 
-        <button className="mono more__footer" onClick={() => setTaps((t) => t + 1)}>
-          {COPY.build}
-        </button>
+        <div className="mono more__footer">{COPY.build}</div>
       </ScreenBody>
     </Screen>
   );
