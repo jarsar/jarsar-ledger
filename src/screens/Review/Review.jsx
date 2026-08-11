@@ -53,6 +53,7 @@ export default function Review() {
                   key={row.id}
                   row={row}
                   budgets={budgets}
+                  siblings={allRows}
                   busy={Boolean(pending[row.id])}
                   onCertify={async (category) => {
                     const updated = await updateRow(row.id, category === row.category ? {} : { category });
@@ -81,7 +82,7 @@ function CertifiedCard({ row }) {
   );
 }
 
-function DocketCard({ row, budgets, busy, onCertify, onStrike }) {
+function DocketCard({ row, budgets, siblings, busy, onCertify, onStrike }) {
   const [category, setCategory] = useState(row.category);
   const [expanded, setExpanded] = useState(false);
   const [armed, setArmed] = useState(false);
@@ -91,13 +92,25 @@ function DocketCard({ row, budgets, busy, onCertify, onStrike }) {
   // knows — and upgrades itself the day the back office starts writing notes.
   const question = row.notes?.trim() || COPY.review.question(row.source);
 
+  // The parser's own choice leads; the alternatives are the categories this
+  // counterparty has been filed under before, which is the only suggestion
+  // the sheet can actually justify.
   const suggestions = useMemo(() => {
-    const others = budgets
-      .map((b) => b.category)
-      .filter((c) => c !== row.category)
-      .slice(0, 2);
-    return [row.category, ...others];
-  }, [budgets, row.category]);
+    const rank = (predicate) => {
+      const tally = new Map();
+      for (const r of siblings) {
+        if (!r.category || r.category === row.category || !predicate(r)) continue;
+        tally.set(r.category, (tally.get(r.category) || 0) + 1);
+      }
+      return [...tally.entries()].sort((a, b) => b[1] - a[1]).map(([c]) => c);
+    };
+    // What this counterparty has been filed under before, and failing that,
+    // what the book uses most. Never the sheet's row order — "Rent" is not a
+    // plausible correction for a convenience store.
+    const priors = rank((r) => r.vendor === row.vendor);
+    const common = rank(() => true).filter((c) => !priors.includes(c));
+    return [row.category, ...priors, ...common].filter(Boolean).slice(0, 3);
+  }, [row.category, row.vendor, siblings]);
 
   const certify = async () => {
     setError(null);

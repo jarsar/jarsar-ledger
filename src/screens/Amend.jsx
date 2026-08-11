@@ -93,7 +93,12 @@ export default function Amend({ id }) {
     }
   };
 
-  const categories = expanded ? budgets.map((b) => b.category) : budgets.slice(0, 5).map((b) => b.category);
+  // The entry's own category always leads, so the selection is never off
+  // screen — an unhighlighted row reads as "no category set".
+  const allCategories = budgets.map((b) => b.category);
+  const categories = expanded
+    ? [draft.category, ...allCategories.filter((c) => c !== draft.category)].filter(Boolean)
+    : [draft.category, ...allCategories.filter((c) => c !== draft.category)].filter(Boolean).slice(0, 5);
 
   return (
     <Screen variant="fog" scroll={false}>
