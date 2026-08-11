@@ -6,13 +6,28 @@
 //
 //   node scripts/test-backend.mjs
 
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import vm from 'node:vm';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const source = readFileSync(join(root, 'Code.gs'), 'utf8');
+const codePath = join(root, 'Code.gs');
+
+// Code.gs is the owner's back office and is deliberately not committed, so a
+// fresh clone and CI will not have it. That is not a failure — say so and
+// stand down, rather than crashing on a missing file.
+if (!existsSync(codePath)) {
+  console.log(
+    '\nJarSar back office — handler checks\n\n' +
+      '  skipped: Code.gs is not in this checkout.\n' +
+      '  It is the live back office and is gitignored on purpose. To run these\n' +
+      '  checks, put your Code.gs in the project root.\n'
+  );
+  process.exit(0);
+}
+
+const source = readFileSync(codePath, 'utf8');
 
 let failures = 0;
 const check = (name, fn) => {
