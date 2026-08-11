@@ -1,9 +1,31 @@
+/* The strip the dock floats over. Without it the list is sliced mid-row by
+   the gap beneath the pill, which reads as a rendering fault rather than as
+   content passing behind. */
+.dock__veil {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(var(--dock-h) + var(--dock-inset) * 2 + var(--safe-bottom));
+  background: linear-gradient(180deg, rgba(237, 241, 239, 0) 0%, var(--fog) 55%);
+  pointer-events: none;
+  z-index: 39;
+}
+
+/* Radar's feed runs over the room all the way down, so its veil fades to the
+   room instead. Home is a room screen too, but its lower half is the fog
+   sheet — which is why this is set by the screen, not inferred from a sibling. */
+.dock__veil--room {
+  background: linear-gradient(180deg, rgba(65, 117, 123, 0) 0%, rgba(65, 117, 123, 0.92) 62%);
+}
+
 .dock {
   position: fixed;
   left: var(--dock-inset);
   right: var(--dock-inset);
   bottom: calc(var(--dock-inset) + var(--safe-bottom));
   height: var(--dock-h);
+  padding: 0 4px;
   background: var(--card);
   border-radius: var(--r-pill);
   display: grid;
@@ -17,16 +39,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   height: var(--dock-h);
   justify-content: center;
 }
 
 .dock__label {
-  font-size: 8px;
+  font-size: 8.5px;
   font-weight: 500;
   color: rgba(var(--ink-rgb), 0.45);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
 .dock__label--active {
@@ -40,7 +63,8 @@
   justify-content: center;
 }
 
-/* The only raised element in the product: file from anywhere. */
+/* The only raised element in the product: file from anywhere. It sits a
+   little proud of the pill so it reads as raised rather than inset. */
 .dock__fab {
   width: var(--fab);
   height: var(--fab);
@@ -49,12 +73,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-fab);
+  box-shadow: var(--shadow-fab), 0 0 0 5px var(--card);
+  transform: translateY(-7px);
   transition: transform 120ms var(--ease);
 }
 
 .dock__fab:active {
-  transform: scale(0.94);
+  transform: translateY(-7px) scale(0.94);
 }
 
 .dock__fabglyph {

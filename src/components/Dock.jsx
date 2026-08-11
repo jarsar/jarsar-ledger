@@ -14,7 +14,7 @@ const STATIONS = [
  * station — it is a summons, reached from Activity's chip, Radar, and the
  * board note. Rendered once at the app root so it never re-mounts.
  */
-export default function Dock({ active }) {
+export default function Dock({ active, tone = 'fog' }) {
   const station = ({ name, path, label, Icon }) => (
     <button
       key={name}
@@ -29,16 +29,19 @@ export default function Dock({ active }) {
   );
 
   return (
-    <nav className="dock chrome" aria-label="Stations">
-      {station(STATIONS[0])}
-      {station(STATIONS[1])}
-      <div className="dock__fabwrap">
-        <button className="dock__fab" onClick={() => navigate('/capture')} aria-label="File an entry">
-          <span className="dock__fabglyph">+</span>
-        </button>
-      </div>
-      {station(STATIONS[2])}
-      {station(STATIONS[3])}
-    </nav>
+    <>
+      <div className={`dock__veil${tone === 'room' ? ' dock__veil--room' : ''}`} aria-hidden="true" />
+      <nav className="dock chrome" aria-label="Stations">
+        {station(STATIONS[0])}
+        {station(STATIONS[1])}
+        <div className="dock__fabwrap">
+          <button className="dock__fab" onClick={() => navigate('/capture')} aria-label="File an entry">
+            <span className="dock__fabglyph">+</span>
+          </button>
+        </div>
+        {station(STATIONS[2])}
+        {station(STATIONS[3])}
+      </nav>
+    </>
   );
 }

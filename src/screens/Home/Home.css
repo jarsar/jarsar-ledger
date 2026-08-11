@@ -23,6 +23,13 @@
   padding: 18px var(--gutter) 0;
 }
 
+/* The figure is a span, and the pill is inline — so a short month's total
+   left room for the pill to ride up beside it. The total always gets its
+   own line. */
+.home__hero .amount {
+  display: block;
+}
+
 .home__pill {
   display: inline-flex;
   align-items: center;

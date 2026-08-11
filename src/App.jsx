@@ -38,10 +38,14 @@ export default function App() {
     }
   };
 
+  const station = route.name || 'home';
+  // Home's budget sheet and Activity's list are fog; Radar's feed is the room.
+  const veil = station === 'radar' ? 'room' : 'fog';
+
   return (
     <>
       {screen()}
-      {isStation(route.name) || route.name === 'home' ? <Dock active={route.name || 'home'} /> : null}
+      {isStation(route.name) || route.name === 'home' ? <Dock active={station} tone={veil} /> : null}
     </>
   );
 }
