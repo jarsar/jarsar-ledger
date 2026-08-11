@@ -1,0 +1,33 @@
+.chip {
+  font-size: 9.5px;
+  font-weight: 500;
+  border-radius: var(--r-pill);
+  padding: 4px 9px;
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+}
+
+.chip--amber {
+  background: rgba(232, 184, 75, 0.2);
+  color: var(--amber-text);
+}
+
+.chip--mint {
+  background: rgba(127, 214, 183, 0.22);
+  color: var(--mint-text);
+}
+
+.chip--coral {
+  background: var(--coral-wash);
+  color: var(--coral-text);
+}
+
+.chip--grey {
+  background: rgba(var(--ink-rgb), 0.07);
+  color: rgba(var(--ink-rgb), 0.55);
+}
+
+.chip--teal {
+  background: rgba(38, 75, 83, 0.08);
+  color: var(--teal);
+}

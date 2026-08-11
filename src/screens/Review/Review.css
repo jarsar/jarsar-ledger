@@ -1,0 +1,177 @@
+.review__head {
+  flex: none;
+  padding: var(--screen-top) var(--gutter) 0;
+}
+
+.review__back {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--tap);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--teal);
+  margin-left: -2px;
+}
+
+.review__titlerow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.review__title {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.review__waiting {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--amber-text);
+  background: var(--amber-wash);
+  border-radius: var(--r-pill);
+  padding: 5px 11px;
+  white-space: nowrap;
+}
+
+.review__lede {
+  font-size: 13.5px;
+  color: rgba(var(--ink-rgb), 0.6);
+  margin-top: 8px;
+}
+
+.review__body {
+  padding: 14px var(--gutter) calc(40px + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.docket {
+  /* A flex child in a scrolling column will shrink and clip its own content
+     unless it is told not to. */
+  flex: none;
+  background: var(--card);
+  border-radius: var(--r-card-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  padding: 16px 18px 14px;
+}
+
+.docket--done {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(127, 214, 183, 0.14);
+}
+
+.docket__stamp {
+  background: var(--mint);
+  color: var(--ink);
+  border-radius: var(--r-pill);
+  padding: 7px 13px;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  animation: stampOnce var(--t-stamp) var(--ease-stamp) both;
+}
+
+.docket__stampline {
+  font-size: 11px;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+
+.docket__head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.docket__headtext {
+  flex: 1;
+  min-width: 0;
+}
+
+.docket__vendor {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.docket__when {
+  font-size: 10px;
+  color: rgba(var(--ink-rgb), 0.45);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.docket__amount {
+  font-size: 17px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.docket__question {
+  background: var(--amber-soft);
+  border-radius: 14px;
+  padding: 11px 13px;
+  margin-top: 12px;
+}
+
+.docket__question p {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(var(--ink-rgb), 0.8);
+}
+
+.docket__chips {
+  display: flex;
+  gap: 7px;
+  margin-top: 11px;
+  flex-wrap: wrap;
+}
+
+.docket__chip {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(var(--ink-rgb), 0.6);
+  border: 1px solid rgba(var(--ink-rgb), 0.15);
+  padding: 0 12px;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  border-radius: var(--r-pill);
+}
+
+.docket__chip--on {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.docket__chip--more {
+  border-style: dashed;
+  color: rgba(var(--ink-rgb), 0.45);
+}
+
+.docket__error {
+  font-size: 12.5px;
+  color: var(--coral-text);
+  margin-top: 10px;
+}
+
+.docket__actions {
+  display: flex;
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.review__footer {
+  text-align: center;
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.5);
+  margin: 6px 0 0;
+}

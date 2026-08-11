@@ -1,0 +1,38 @@
+.sheet__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 26, 29, 0.5);
+  z-index: 50;
+  animation: fadeIn 200ms var(--ease) both;
+}
+
+.sheet__scrim--out {
+  animation: fadeIn 200ms var(--ease) reverse both;
+}
+
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 51;
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0;
+  padding: 16px 22px calc(28px + var(--safe-bottom));
+  max-height: 88%;
+  overflow-y: auto;
+  animation: sheetUp var(--t-sheet) var(--ease) both;
+}
+
+.sheet--out {
+  animation: sheetDown var(--t-sheet-out) var(--ease) both;
+}
+
+.sheet__grabber {
+  width: 44px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(var(--ink-rgb), 0.15);
+  margin: 0 auto 16px;
+}

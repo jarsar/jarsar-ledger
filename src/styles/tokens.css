@@ -1,0 +1,95 @@
+/* JarSar Ledger — design tokens (design doc option 1l, locked).
+   The room is the only saturated field. Amber owns time, mint means
+   clearance, coral means breach. Nothing here decorates. */
+
+:root {
+  /* ── colour ─────────────────────────────────────────────── */
+  --ink: #14252a;
+  --ink-rgb: 20, 37, 42;
+  --fog: #edf1ef;
+  --card: #ffffff;
+  --paper-dark: #10191b; /* the capture stage and the filing log */
+
+  --room-1: #1d3b42;
+  --room-2: #264b53;
+  --room-3: #41757b;
+  --room-grad: linear-gradient(180deg, var(--room-1) 0%, var(--room-2) 48%, var(--room-3) 100%);
+  --room-text: #f2f7f5;
+  --room-text-rgb: 242, 247, 245;
+
+  --teal: #264b53;
+
+  --amber: #e8b84b;
+  --amber-text: #8a6a10;
+  --amber-wash: rgba(232, 184, 75, 0.18);
+  --amber-row-wash: rgba(232, 184, 75, 0.13);
+  --amber-soft: rgba(232, 184, 75, 0.12);
+
+  --mint: #7fd6b7;
+  --mint-text: #1f7a5c;
+  --mint-wash: rgba(127, 214, 183, 0.16);
+
+  --coral: #e4694e;
+  --coral-text: #b84430;
+  --coral-wash: rgba(228, 105, 78, 0.14);
+  --coral-line: rgba(228, 105, 78, 0.4);
+
+  /* vendor monograms and their chips only — never a larger field */
+  --tint-sage-bg: #dce9dd;
+  --tint-sage-fg: #3e6b4f;
+  --tint-clay-bg: #f0ddd2;
+  --tint-clay-fg: #9a4e2a;
+  --tint-mist-bg: #dce6ee;
+  --tint-mist-fg: #3a5e7e;
+  --tint-sand-bg: #efe4c9;
+  --tint-sand-fg: #8a6a10;
+  --tint-mauve-bg: #e6dee9;
+  --tint-mauve-fg: #6b4e77;
+  --tint-rose-bg: #f7dfda;
+  --tint-rose-fg: #a03b2c;
+
+  /* ── type ───────────────────────────────────────────────── */
+  --font-sans: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, 'SF Mono', monospace;
+
+  /* ── geometry ───────────────────────────────────────────── */
+  --r-card: 16px;
+  --r-card-lg: 20px;
+  --r-card-list: 18px;
+  --r-sheet: 28px;
+  --r-stage: 24px;
+  --r-pill: 999px;
+  --r-mono: 13px;
+
+  --gutter: 20px;
+  --dock-h: 64px;
+  --dock-inset: 16px;
+  --fab: 52px;
+  --bar-h: 5px;
+  --tick-w: 2.5px;
+  --tick-h: 13px;
+  --tap: 44px;
+
+  /* ── elevation ──────────────────────────────────────────── */
+  --shadow-card: 0 2px 8px rgba(20, 37, 42, 0.05);
+  --shadow-card-soft: 0 2px 8px rgba(20, 37, 42, 0.04);
+  --shadow-dock: 0 12px 30px rgba(20, 37, 42, 0.28);
+  --shadow-float: 0 18px 40px rgba(13, 26, 29, 0.35);
+  --shadow-lift: 0 24px 50px rgba(13, 26, 29, 0.4);
+  --shadow-fab: 0 8px 18px rgba(232, 184, 75, 0.45);
+
+  /* ── motion — one easing, and only two loops ────────────── */
+  --ease: cubic-bezier(0.2, 0.9, 0.3, 1);
+  --ease-stamp: cubic-bezier(0.2, 1.3, 0.4, 1);
+  --t-sheet: 320ms;
+  --t-sheet-out: 260ms;
+  --t-stamp: 450ms;
+  --t-rise: 400ms;
+  --t-log: 300ms;
+
+  /* ── safe areas ─────────────────────────────────────────── */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --screen-top: calc(max(var(--safe-top), 20px) + 12px);
+  --dock-clearance: calc(var(--dock-h) + var(--dock-inset) + var(--safe-bottom) + 20px);
+}

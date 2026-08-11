@@ -1,0 +1,162 @@
+.radar__top {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  padding-top: calc(var(--screen-top) + 14px);
+}
+
+.radar__titlerow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.radar__title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.radar__heading {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.radar__pass {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(var(--room-text-rgb), 0.65);
+  white-space: nowrap;
+}
+
+.radar__filters {
+  display: flex;
+  gap: 8px;
+  padding-top: 13px;
+}
+
+.radar__body {
+  padding: 14px var(--gutter) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.signal {
+  flex: none;
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--r-card-list);
+  padding: 15px 17px;
+}
+
+.signal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.signal__label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.signal__labeltext {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+.signal__labeltext--coral {
+  color: var(--coral-text);
+}
+
+.signal__labeltext--amber {
+  color: var(--amber-text);
+}
+
+.signal__labeltext--mint {
+  color: var(--mint-text);
+}
+
+.signal__at {
+  font-size: 9.5px;
+  color: rgba(var(--ink-rgb), 0.4);
+}
+
+.signal__title {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin-top: 9px;
+}
+
+.signal__body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.65);
+  margin-top: 6px;
+}
+
+.signal__spark {
+  margin-top: 9px;
+  display: block;
+}
+
+.signal__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 24px;
+  margin-top: 9px;
+}
+
+.signal__bar {
+  width: 9px;
+  background: rgba(var(--ink-rgb), 0.15);
+  border-radius: 3px;
+}
+
+.signal__bar--now {
+  background: var(--teal);
+}
+
+.signal__actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 9px;
+}
+
+.signal__view {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--teal);
+  white-space: nowrap;
+  min-height: var(--tap);
+}
+
+.signal__dismiss {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: rgba(var(--ink-rgb), 0.4);
+  min-height: var(--tap);
+}
+
+.radar__quiet {
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(var(--room-text-rgb), 0.5);
+  padding: 8px 0 4px;
+}
+
+.radar__quietalone {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(var(--room-text-rgb), 0.6);
+  padding: 80px 24px;
+}

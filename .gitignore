@@ -1,0 +1,10 @@
+node_modules
+dist
+.DS_Store
+
+# Personal / never publish: the back office source, its handoff spec, the brief,
+# and the design document the build was made from.
+Code.gs
+HANDOFF.md
+jarcap_*.md
+design/

@@ -1,0 +1,67 @@
+.dock {
+  position: fixed;
+  left: var(--dock-inset);
+  right: var(--dock-inset);
+  bottom: calc(var(--dock-inset) + var(--safe-bottom));
+  height: var(--dock-h);
+  background: var(--card);
+  border-radius: var(--r-pill);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  box-shadow: var(--shadow-dock);
+  z-index: 40;
+}
+
+.dock__station {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  height: var(--dock-h);
+  justify-content: center;
+}
+
+.dock__label {
+  font-size: 8px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.45);
+  letter-spacing: 0.02em;
+}
+
+.dock__label--active {
+  color: var(--teal);
+  font-weight: 500;
+}
+
+.dock__fabwrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The only raised element in the product: file from anywhere. */
+.dock__fab {
+  width: var(--fab);
+  height: var(--fab);
+  border-radius: 50%;
+  background: var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-fab);
+  transition: transform 120ms var(--ease);
+}
+
+.dock__fab:active {
+  transform: scale(0.94);
+}
+
+.dock__fabglyph {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+  margin-top: -2px;
+}

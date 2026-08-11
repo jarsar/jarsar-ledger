@@ -1,0 +1,314 @@
+.home__head {
+  flex: none;
+  padding: calc(var(--screen-top) + 12px) var(--gutter) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.home__wordmark {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.home__hero {
+  flex: none;
+  padding: 18px var(--gutter) 0;
+}
+
+.home__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--amber);
+  border-radius: var(--r-pill);
+  padding: 6px 12px;
+  margin-top: 10px;
+}
+
+.home__pilldot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.home__pilltext {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* The fog sheet: everything below the chart scrolls, the hero does not. */
+.home__sheet {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  background: var(--fog);
+  color: var(--ink);
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0;
+  margin-top: 10px;
+  padding: 20px var(--gutter) var(--dock-clearance);
+}
+
+.home__closed {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: var(--mint-wash);
+  border-radius: 14px;
+  padding: 11px 14px;
+  margin-bottom: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--mint-text);
+}
+
+.home__sectionhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.home__sectiontitle {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.home__sectionnote {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.45);
+  white-space: nowrap;
+}
+
+.home__group {
+  margin-top: 16px;
+}
+
+.home__grouphead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 2px 8px;
+}
+
+.home__grouphead--spaced {
+  margin-top: 20px;
+}
+
+.home__groupname {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(var(--ink-rgb), 0.55);
+}
+
+.home__groupsum,
+.home__fundnote {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.45);
+  white-space: nowrap;
+}
+
+.home__fundnote {
+  font-size: 9.5px;
+  color: rgba(var(--ink-rgb), 0.4);
+}
+
+.home__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card-soft);
+}
+
+.budgetrow {
+  padding: 13px 16px;
+  transition: background-color 600ms var(--ease);
+}
+
+/* Radar's deep link lands here and says so, briefly. */
+.budgetrow--focus {
+  background: var(--amber-row-wash);
+}
+
+.budgetrow__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.budgetrow__name {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.budgetrow__nocap {
+  height: 0;
+  border-bottom: 1.5px dashed rgba(var(--ink-rgb), 0.15);
+  margin-top: 12px;
+}
+
+.budgetrow__figures {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.5);
+  margin-top: 8px;
+}
+
+.home__funds {
+  display: flex;
+  gap: 9px;
+}
+
+.home__fund {
+  flex: 1;
+  border: 1.5px dashed rgba(var(--ink-rgb), 0.18);
+  border-radius: var(--r-card);
+  padding: 12px 13px;
+  min-width: 0;
+}
+
+.home__fundname {
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.home__fundamt {
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.home__fundtag {
+  font-size: 8.5px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.4);
+  margin-top: 3px;
+  letter-spacing: 0.06em;
+}
+
+.home__fundtag--drawn {
+  color: var(--amber-text);
+}
+
+.home__card {
+  padding: 15px 16px;
+  margin-top: 12px;
+}
+
+.home__cardhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.home__cardtitle {
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.home__cardnote {
+  font-size: 8.5px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.4);
+  letter-spacing: 0.06em;
+}
+
+.home__vendor {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.06);
+}
+
+.home__vendor:last-child {
+  border-bottom: 0;
+}
+
+.home__vendorname {
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.home__vendorct {
+  font-size: 9.5px;
+  color: rgba(var(--ink-rgb), 0.4);
+  flex-shrink: 0;
+}
+
+.home__vendoramt {
+  font-size: 12px;
+  font-weight: 500;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.home__vendorempty {
+  font-size: 13px;
+  color: rgba(var(--ink-rgb), 0.5);
+  padding: 12px 0 2px;
+}
+
+.home__board {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: var(--ink);
+  border-radius: var(--r-card);
+  padding: 16px 18px;
+  margin-top: 12px;
+  color: #edf1ef;
+}
+
+.home__boardhead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home__boarddot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--amber);
+}
+
+.home__boardlabel {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+}
+
+.home__boardbody {
+  font-size: 13.5px;
+  line-height: 1.55;
+  margin-top: 9px;
+  color: rgba(237, 241, 239, 0.85);
+}
+
+.home__boardaction {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--amber);
+  margin-top: 11px;
+}

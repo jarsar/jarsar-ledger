@@ -1,0 +1,79 @@
+.pill {
+  min-height: var(--tap);
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-align: center;
+  padding: 0 16px;
+  transition: opacity 120ms var(--ease), transform 120ms var(--ease);
+}
+
+.pill:active:not(:disabled) {
+  transform: scale(0.985);
+}
+
+.pill:disabled {
+  opacity: 0.45;
+}
+
+.pill--sm {
+  height: 46px;
+  font-size: 13.5px;
+}
+
+.pill--md {
+  height: 50px;
+  font-size: 14px;
+}
+
+.pill--lg {
+  height: 52px;
+  font-size: 14.5px;
+}
+
+.pill--teal {
+  background: var(--teal);
+  color: #ffffff;
+}
+
+.pill--amber {
+  background: var(--amber);
+  color: var(--ink);
+}
+
+.pill--coral {
+  background: var(--coral);
+  color: #ffffff;
+}
+
+.pill--white {
+  background: #ffffff;
+  color: var(--teal);
+}
+
+.pill--outline {
+  border: 1.5px solid rgba(var(--ink-rgb), 0.16);
+  color: rgba(var(--ink-rgb), 0.75);
+  font-weight: 600;
+}
+
+.pill--outline-light {
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  color: var(--room-text);
+  font-weight: 600;
+}
+
+.pill--danger {
+  border: 1.5px solid var(--coral-line);
+  color: var(--coral-text);
+}
+
+/* Strike, mid-confirmation: the second tap is the one that means it. */
+.pill--danger-armed {
+  background: var(--coral);
+  color: #ffffff;
+}

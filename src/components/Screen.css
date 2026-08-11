@@ -1,0 +1,61 @@
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.screen--fog {
+  background: var(--fog);
+  color: var(--ink);
+}
+
+.screen--room {
+  background: var(--room-grad);
+  color: var(--room-text);
+}
+
+.screen--dark {
+  background: var(--paper-dark);
+  color: var(--room-text);
+}
+
+/* A ramp screen's fixed head: the teal band Activity wears, or Home's hero. */
+.screen__top {
+  flex: none;
+  padding-top: var(--screen-top);
+}
+
+.screen__top--room {
+  background: linear-gradient(180deg, var(--room-1), #2b545d);
+  color: var(--room-text);
+}
+
+.screen__top--plain {
+  background: transparent;
+}
+
+.screen__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  padding-top: var(--screen-top);
+}
+
+/* Ramp screens carry their own top zone, so the scroller starts flush. */
+.screen__top + .screen__scroll {
+  padding-top: 0;
+}
+
+.screen__scroll--dock {
+  padding-bottom: var(--dock-clearance);
+}
+
+.screen__scroll--sheet {
+  background: var(--fog);
+  color: var(--ink);
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0;
+}

@@ -1,0 +1,120 @@
+.qa__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.qa__headtext {
+  flex: 1;
+  min-width: 0;
+}
+
+.qa__vendor {
+  font-size: 16.5px;
+  font-weight: 700;
+}
+
+.qa__item {
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+
+/* The amount is edited in place: the display sets the size, the field sits
+   invisibly on top of it. */
+.qa__amountwrap {
+  position: relative;
+  display: block;
+  margin-top: 14px;
+  min-height: var(--tap);
+}
+
+.qa__amountghost {
+  pointer-events: none;
+}
+
+.qa__amount {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: transparent;
+  caret-color: var(--teal);
+  background: transparent;
+}
+
+.qa__chips {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.qa__chip {
+  font-size: 11px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  border: 1px solid rgba(var(--ink-rgb), 0.16);
+  border-radius: var(--r-pill);
+  padding: 0 13px;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.qa__chip--static {
+  color: rgba(var(--ink-rgb), 0.5);
+  border-style: dashed;
+}
+
+.qa__methods {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.qa__method {
+  font-size: 11px;
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  border-radius: var(--r-pill);
+  padding: 0 13px;
+  min-height: var(--tap);
+  display: flex;
+  align-items: center;
+  color: rgba(var(--ink-rgb), 0.7);
+}
+
+.qa__method--on {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+}
+
+.qa__note {
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.55);
+  margin-top: 12px;
+}
+
+.qa__error {
+  font-size: 12.5px;
+  color: var(--coral-text);
+  margin-top: 8px;
+}
+
+.qa__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.qa__dirty {
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  color: rgba(var(--ink-rgb), 0.4);
+  text-align: center;
+  margin-top: 10px;
+}

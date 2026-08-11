@@ -1,0 +1,610 @@
+.cap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--screen-top) 0 calc(20px + var(--safe-bottom));
+}
+
+.cap__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cap__head {
+  flex: none;
+  padding: 14px var(--gutter) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cap__title {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.cap__count {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(var(--room-text-rgb), 0.7);
+  white-space: nowrap;
+}
+
+.cap__filingno {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--amber);
+  border: 1px solid rgba(232, 184, 75, 0.5);
+  border-radius: var(--r-pill);
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+/* The stage stands in for the viewfinder: tapping it opens the real camera,
+   which is the one an iPhone is actually good at. */
+.cap__stage {
+  flex: 1;
+  min-height: 0;
+  margin: 16px var(--gutter) 0;
+  background: var(--paper-dark);
+  border-radius: var(--r-stage);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: calc(100% - var(--gutter) * 2);
+}
+
+.cap__guide {
+  width: 170px;
+  min-height: 220px;
+  border: 1.5px dashed rgba(var(--room-text-rgb), 0.35);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 18px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(var(--room-text-rgb), 0.55);
+}
+
+.cap__shutter {
+  position: absolute;
+  bottom: 24px;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cap__shutterinner {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 120ms var(--ease);
+}
+
+.cap__stage:active .cap__shutterinner {
+  transform: scale(0.9);
+}
+
+.cap__typed {
+  flex: none;
+  margin: 14px var(--gutter) 0;
+  min-height: 50px;
+  background: #ffffff;
+  border-radius: var(--r-pill);
+  display: flex;
+  align-items: center;
+  padding: 0 8px 0 18px;
+  gap: 2px;
+}
+
+.cap__typedinput {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.cap__typedinput::placeholder {
+  color: rgba(var(--ink-rgb), 0.45);
+  font-size: 13px;
+}
+
+.cap__caret {
+  height: 18px;
+  margin-right: 10px;
+}
+
+.cap__file {
+  min-height: var(--tap);
+  padding: 0 18px;
+  border-radius: var(--r-pill);
+  background: var(--teal);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.cap__footnote {
+  flex: none;
+  font-size: 12.5px;
+  color: rgba(var(--room-text-rgb), 0.65);
+  margin: 12px 24px 0;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.cap__dismiss {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: 14px var(--gutter) 0;
+}
+
+/* ── filing ─────────────────────────────────────────────── */
+
+.cap__skeleton {
+  flex: none;
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.cap__skel {
+  width: 110px;
+  min-height: 136px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  padding: 11px 10px;
+  position: relative;
+  animation: riseIn var(--t-rise) var(--ease) both;
+}
+
+.cap__skelbar {
+  display: block;
+  height: 4px;
+  background: rgba(var(--room-text-rgb), 0.15);
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+
+.cap__skelbar:first-child {
+  background: rgba(var(--room-text-rgb), 0.3);
+  margin-bottom: 6px;
+}
+
+.cap__scan {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 16px;
+  height: 1.5px;
+  background: var(--amber);
+  box-shadow: 0 0 10px rgba(232, 184, 75, 0.8);
+  animation: scanSweep 1.6s var(--ease) infinite;
+}
+
+.cap__log {
+  flex: 1;
+  min-height: 0;
+  margin: 16px var(--gutter) 0;
+  background: var(--paper-dark);
+  border-radius: var(--r-card-lg);
+  padding: 18px;
+  overflow: hidden;
+}
+
+.log {
+  font-size: 11.5px;
+  line-height: 2.1;
+  color: rgba(var(--room-text-rgb), 0.85);
+}
+
+.log__line {
+  animation: logIn var(--t-log) var(--ease) both;
+}
+
+.log__time {
+  color: rgba(var(--room-text-rgb), 0.35);
+}
+
+.log__dim {
+  color: rgba(var(--room-text-rgb), 0.4);
+}
+
+.log__strong {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.log__amber {
+  color: var(--amber);
+}
+
+.log__closing {
+  font-weight: 500;
+}
+
+.log__mint {
+  color: var(--mint);
+}
+
+.log__line--bad {
+  color: #ffc7bb;
+}
+
+.log__caret {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--amber);
+  vertical-align: -3px;
+  animation: caretB 1s infinite;
+}
+
+/* The hairline is honest: it advances with elapsed time and never completes
+   until the back office has actually answered. */
+.cap__progress {
+  flex: none;
+  margin: 14px 40px 4px;
+}
+
+.cap__progressbar {
+  height: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: var(--r-pill);
+  position: relative;
+  overflow: hidden;
+}
+
+.cap__progressfill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--r-pill);
+  background: var(--amber);
+  transition: width 250ms var(--ease);
+}
+
+/* ── failed ─────────────────────────────────────────────── */
+
+.cap__fail {
+  padding: 0 0 calc(24px + var(--safe-bottom));
+}
+
+.cap__failbanner {
+  background: var(--coral);
+  color: #ffffff;
+  padding: 24px 24px 22px;
+  margin: 12px var(--gutter) 0;
+  border-radius: var(--r-card-lg);
+}
+
+.cap__failstamp {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  opacity: 0.85;
+}
+
+.cap__failtitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 10px;
+  line-height: 1.3;
+}
+
+.cap__failbody {
+  padding: 20px var(--gutter) 0;
+}
+
+.cap__held {
+  background: var(--card);
+  border-radius: var(--r-card);
+  padding: 15px 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.cap__heldlabel {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+
+.cap__heldline {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.cap__failnote {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 14px 2px 0;
+  color: rgba(var(--ink-rgb), 0.8);
+}
+
+.cap__failhint {
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 8px 2px 0;
+  color: rgba(var(--ink-rgb), 0.55);
+}
+
+.cap__failaction {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.cap__leave {
+  display: block;
+  width: 100%;
+  min-height: var(--tap);
+  margin-top: 6px;
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.45);
+}
+
+/* ── not a receipt ──────────────────────────────────────── */
+
+.cap--notreceipt {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.cap__rejectstage {
+  flex: 1;
+  min-height: 0;
+  margin-top: 14px;
+  background: var(--paper-dark);
+  border-radius: var(--r-stage);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cap__rejectframe {
+  width: 150px;
+  min-height: 190px;
+  background: rgba(var(--room-text-rgb), 0.08);
+  border: 1.5px dashed rgba(var(--room-text-rgb), 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 12px;
+  color: rgba(var(--room-text-rgb), 0.55);
+}
+
+.cap__rejectcard {
+  flex: none;
+  margin-top: 18px;
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--r-card-lg);
+  padding: 20px;
+}
+
+.cap__rejecttitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.cap__rejectbody {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.7);
+  margin-top: 8px;
+}
+
+.cap__rejectactions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* ── sent to review ─────────────────────────────────────── */
+
+.cap__sent {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px var(--gutter) calc(24px + var(--safe-bottom));
+}
+
+.cap__sentcard {
+  background: var(--card);
+  border-radius: var(--r-card-lg);
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(20, 37, 42, 0.06);
+  animation: riseIn var(--t-rise) var(--ease) both;
+}
+
+.cap__senttitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.cap__sentbody {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.7);
+  margin-top: 8px;
+}
+
+.cap__senttable {
+  background: var(--fog);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-top: 14px;
+  font-size: 11.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cap__senttable > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cap__senttable span:first-child {
+  color: rgba(var(--ink-rgb), 0.5);
+}
+
+.cap__sentflag {
+  color: var(--coral-text);
+}
+
+.cap__sentaction {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.cap__sentsafe {
+  text-align: center;
+  font-size: 12.5px;
+  color: rgba(var(--ink-rgb), 0.5);
+  margin-top: 14px;
+}
+
+/* ── entered into record ────────────────────────────────── */
+
+.cap--done {
+  align-items: center;
+  justify-content: center;
+  padding-left: 32px;
+  padding-right: 32px;
+  text-align: center;
+  animation: riseIn var(--t-rise) var(--ease) both;
+}
+
+.cap__check {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(127, 214, 183, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.cap__donetitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.cap__receiptwrap {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+.cap__receipt {
+  background: var(--card);
+  color: var(--ink);
+  border-radius: var(--r-card-lg);
+  padding: 20px 20px 16px;
+  box-shadow: var(--shadow-lift);
+  text-align: left;
+}
+
+.cap__receipthead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.cap__receiptno {
+  font-size: 9.5px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.45);
+  white-space: nowrap;
+}
+
+.cap__receiptvendor {
+  font-size: 17px;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.cap__receiptitem {
+  font-size: 13px;
+  color: rgba(var(--ink-rgb), 0.55);
+  margin-top: 2px;
+}
+
+.cap__receiptamt {
+  display: block;
+  margin-top: 12px;
+}
+
+.cap__receiptfoot {
+  border-top: 1px dashed rgba(var(--ink-rgb), 0.18);
+  margin-top: 14px;
+  padding-top: 11px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(var(--ink-rgb), 0.5);
+}
+
+.cap__receiptclean {
+  color: var(--mint-text);
+}
+
+.cap__delta {
+  position: absolute;
+  right: -10px;
+  top: -14px;
+  background: var(--amber);
+  color: var(--ink);
+  border-radius: 10px;
+  padding: 7px 11px;
+  font-size: 10.5px;
+  font-weight: 500;
+  box-shadow: 0 8px 18px rgba(13, 26, 29, 0.35);
+  white-space: nowrap;
+}
+
+.cap__donemsg {
+  font-size: 12.5px;
+  color: rgba(var(--room-text-rgb), 0.75);
+  margin-top: 18px;
+  line-height: 1.5;
+}
+
+.cap__doneactions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  width: 100%;
+  max-width: 280px;
+}
