@@ -26,7 +26,7 @@ export default function App() {
       case 'radar':
         return <Radar />;
       case 'more':
-        return <More />;
+        return <More debug={route.query.debug === '1'} />;
       case 'review':
         return <Review />;
       case 'entry':

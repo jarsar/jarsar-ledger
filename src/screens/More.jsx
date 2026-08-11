@@ -8,7 +8,56 @@ import { monthName, dayLabel, daysBetween } from '../lib/format';
 import { COPY, DOOR_LABELS } from '../lib/copy';
 import './More.css';
 
-export default function More() {
+/**
+ * What the device actually reports about its own geometry. Reached only at
+ * #/more?debug=1 — the safe-area insets and the standalone flag cannot be
+ * reproduced in a desktop browser, so when the dock sits wrong on a real
+ * phone this is the only way to see why.
+ */
+function DeviceReport() {
+  const probe = useMemo(() => {
+    const el = document.createElement('div');
+    el.style.cssText =
+      'position:fixed;top:0;left:0;visibility:hidden;' +
+      'padding:env(safe-area-inset-top) env(safe-area-inset-right) ' +
+      'env(safe-area-inset-bottom) env(safe-area-inset-left)';
+    document.body.appendChild(el);
+    const cs = getComputedStyle(el);
+    const read = { top: cs.paddingTop, right: cs.paddingRight, bottom: cs.paddingBottom, left: cs.paddingLeft };
+    el.remove();
+    return read;
+  }, []);
+
+  const dock = document.querySelector('.dock')?.getBoundingClientRect();
+  const standalone =
+    window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+
+  const lines = [
+    ['screen', `${window.screen.width}×${window.screen.height}`],
+    ['viewport', `${window.innerWidth}×${window.innerHeight}`],
+    ['visual viewport', window.visualViewport ? `${Math.round(window.visualViewport.width)}×${Math.round(window.visualViewport.height)}` : '—'],
+    ['safe top / bottom', `${probe.top} / ${probe.bottom}`],
+    ['dock gap below', dock ? `${Math.round(window.innerHeight - dock.bottom)}px` : '—'],
+    ['standalone', standalone ? 'yes' : 'no (Safari)'],
+    ['dpr', String(window.devicePixelRatio)],
+  ];
+
+  return (
+    <>
+      <div className="mono more__label">DEVICE</div>
+      <div className="card more__block">
+        {lines.map(([k, v]) => (
+          <div className="more__bookline" key={k} style={{ padding: '4px 0' }}>
+            <span className="mono more__value">{k}</span>
+            <span className="mono more__value" style={{ color: 'var(--ink)' }}>{v}</span>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+}
+
+export default function More({ debug = false }) {
   const { today, allRows, connection, checkConnection, resync, months } = useLedger();
   const settings = useSettings();
   const [armed, setArmed] = useState(false);
@@ -168,6 +217,8 @@ export default function More() {
             {COPY.more.demoEnter}
           </button>
         )}
+
+        {debug && <DeviceReport />}
 
         <div className="mono more__footer">{COPY.build}</div>
       </ScreenBody>

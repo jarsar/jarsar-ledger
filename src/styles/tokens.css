@@ -91,5 +91,12 @@
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --screen-top: calc(max(var(--safe-top), 20px) + 12px);
-  --dock-clearance: calc(var(--dock-h) + var(--dock-inset) + var(--safe-bottom) + 20px);
+
+  /* How far the dock floats above the bottom edge.
+     A home indicator already reserves ~34px of clearance, so adding the
+     16px float on top of it strands the dock in the middle of the gap.
+     Take whichever is larger: 34px on a notched phone, 16px on anything
+     without one. */
+  --dock-bottom: max(var(--dock-inset), var(--safe-bottom));
+  --dock-clearance: calc(var(--dock-h) + var(--dock-bottom) + 20px);
 }

@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  height: calc(var(--dock-h) + var(--dock-inset) * 2 + var(--safe-bottom));
+  height: calc(var(--dock-h) + var(--dock-bottom) + var(--dock-inset) + 8px);
   background: linear-gradient(180deg, rgba(237, 241, 239, 0) 0%, var(--fog) 55%);
   pointer-events: none;
   z-index: 39;
@@ -23,7 +23,7 @@
   position: fixed;
   left: var(--dock-inset);
   right: var(--dock-inset);
-  bottom: calc(var(--dock-inset) + var(--safe-bottom));
+  bottom: var(--dock-bottom);
   height: var(--dock-h);
   padding: 0 4px;
   background: var(--card);
