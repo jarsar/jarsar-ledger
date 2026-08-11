@@ -25,8 +25,13 @@ export default function More() {
     const d = doors[key];
     if (!d) return { text: known ? `NOT IN THE LAST ${known} ENTRIES` : 'NO ENTRIES YET', live: false };
     const age = daysBetween(d.date, today.iso);
+    // The watcher delivers what arrives; the other two doors file what you
+    // hand them. The verb should say which is which.
+    const verb = key === 'gmail' ? 'DELIVERED' : 'FILED';
     const when =
-      age === 0 ? `FILED ${d.time || ''} TODAY`.trim() : `DELIVERED ${dayLabel(d.date)}${d.time ? ` ${d.time}` : ''}`;
+      age === 0
+        ? `${verb} ${d.time || ''} TODAY`.replace(/\s+/g, ' ').trim()
+        : `${verb} ${dayLabel(d.date)}${d.time ? ` ${d.time}` : ''}`;
     return { text: when.toUpperCase(), live: age <= 7 };
   };
 

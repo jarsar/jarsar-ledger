@@ -20,8 +20,23 @@ fi
 post() {
   # A simple request: POST, text/plain, no custom headers — Apps Script never
   # answers a preflight, so this is the only shape that works from a browser
-  # too. -L follows the 302 to script.googleusercontent.com.
-  curl -sL -X POST -H 'Content-Type: text/plain;charset=utf-8' -d "$1" "$URL"
+  # too.
+  #
+  # The answer comes back as a 302 to script.googleusercontent.com, and the
+  # second hop must be a GET. A browser's fetch() does that conversion on its
+  # own; curl -L does not — it re-sends the POST and collects a 405 and a
+  # Drive error page. So the two hops are done by hand here.
+  local headers location
+  headers=$(curl -s -o /dev/null -D - -X POST \
+    -H 'Content-Type: text/plain;charset=utf-8' -d "$1" "$URL")
+  location=$(awk 'tolower($1) == "location:" { print $2 }' <<<"$headers" | tr -d '\r')
+
+  if [[ -z "$location" ]]; then
+    # No redirect: either an error, or a deployment answering inline.
+    curl -s -X POST -H 'Content-Type: text/plain;charset=utf-8' -d "$1" "$URL"
+    return
+  fi
+  curl -s "$location"
 }
 
 pass() { printf '  ok   %s\n' "$1"; }
@@ -32,8 +47,10 @@ echo
 echo "JarSar back office — live checks"
 echo
 
-# 1 · the Shortcut's payload shape: no action field at all
-OUT=$(post "{\"token\":\"$TOKEN\",\"text\":\"ledger self-test 7 cash\",\"source\":\"test\"}")
+# 1 · the Shortcut's payload shape: no action field at all.
+# The text has to read as a real completed purchase — the parser is right to
+# refuse anything that doesn't, so "self-test" would never get past it.
+OUT=$(post "{\"token\":\"$TOKEN\",\"text\":\"Gatsby wax sachet 7 pesos at Uncle John, paid cash\",\"source\":\"test\"}")
 if grep -q '"ok":true' <<<"$OUT"; then
   ID=$(sed -n 's/.*"id":"\([^"]*\)".*/\1/p' <<<"$OUT")
   pass "a body with no action still logs (Shortcut compatibility) — id $ID"
